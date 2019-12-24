@@ -14,7 +14,7 @@ class TodoController extends Controller
     {
         $this->middleware('auth');
         $this->todo = $instanceClass;
-        //  dd($this);
+        //  dd($user);
     }
     /**
      * Display a listing of the resource.
@@ -25,11 +25,13 @@ class TodoController extends Controller
     {
         $todos = $this->todo->getByUserId(Auth::id());
         $todos = $this->todo->all();
+        $user = Auth::user();
+        // ログインユーザー情報の取得
         //
         // return "Hello World!!";
         // return view('layouts.app');
-        // dd($todos);
-        return view('todo.index', compact('todos')); 
+        // dd($user);
+        return view('todo.index', compact('todos', 'user')); 
     }
 
     /**
